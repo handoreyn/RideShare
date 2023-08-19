@@ -1,0 +1,27 @@
+# Please refer https://aka.ms/HTTPSinContainer on how to setup an https developer certificate for your ASP.NET Core service.
+
+version: '3.4'
+
+services:
+  rideshareapi:
+    image: rideshareapi
+    build:
+      context: .
+      dockerfile: src/RideShare.Api/Dockerfile
+    ports:
+      - 5136:5136
+    networks:
+      - rideshare
+
+  ridesharesql:
+    image: mcr.microsoft.com/mssql/server
+    environment:
+      - MSSQL_SA_PASSWORD=A!b2c3€4
+      - ACCEPT_EULA=Y
+    ports:
+      - 6433:1433
+    networks:
+      - rideshare
+
+networks:
+  rideshare:

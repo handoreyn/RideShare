@@ -11,7 +11,7 @@ public static class InfrastructureServiceRegistration
 {
     public static void AddInfrastructure(this IServiceCollection services, IConfiguration configuration)
     {
-        services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("RideShareDbContext")));
+        services.AddDbContext<DatabaseContext>(options => options.UseSqlServer(configuration.GetConnectionString("RideShareConnectionString")));
         services.AddScoped<ITravelPlanRepository, TravelPlanRepository>();
     }
 }

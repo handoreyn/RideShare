@@ -34,7 +34,7 @@ public class TravelPlanController : ControllerBase
         throw new ArgumentNullException();
     }
 
-    [HttpGet("search/departure/{departureCity}/destionation/{destionationCity}")]
+    [HttpGet("search/departure/{departureCity}/destionation/{destinationCity}")]
     [ProducesResponseType(typeof(List<SearchTravelPlanDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Search(string departureCity, string destinationCity, CancellationToken cancellationToken)
     {
