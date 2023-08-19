@@ -18,7 +18,7 @@ public sealed class SearchTravelPlanQueryHandler : IQueryHandler<SearchTravelPla
     public async Task<List<SearchTravelPlanDto>> Handle(SearchTravelPlanQuery request, CancellationToken cancellationToken)
     {
         var searchPlan = await _repository.FindAll(r => r.DepartureCity.Equals(request.DepartureCity) &&
-            r.DestinationCity.Equals(request.DestinationCity) && r.IsActive && r.CreatedAt > DateTime.Now, cancellationToken);
+            r.DestinationCity.Equals(request.DestinationCity) && r.IsActive && r.TravelDateTime > DateTime.Now, cancellationToken);
 
         var plansToReturn = _mapper.Map<List<SearchTravelPlanDto>>(searchPlan);
         return plansToReturn;

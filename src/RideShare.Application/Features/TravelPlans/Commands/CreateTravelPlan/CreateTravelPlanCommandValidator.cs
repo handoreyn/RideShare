@@ -14,7 +14,7 @@ public sealed class CreateTravelPlanCommandValidator : AbstractValidator<CreateT
             .NotEmpty()
             .WithMessage("DepartureCity can not be empty.");
 
-        RuleFor(p => p.Destination)
+        RuleFor(p => p.DestinationCity)
             .NotEmpty()
             .WithMessage("DestionationCity can not be empty.");
 

@@ -12,8 +12,10 @@ services:
       - 5136:5136
     networks:
       - rideshare
-
+    environment:
+      - ConnectionStrings__RideShareConnectionString=Server=ridesharesql; Database=RideShare; User=sa Password=A!b2c3€4; Trust Server Certificate=true;
   ridesharesql:
+    container_name: ridesharesql
     image: mcr.microsoft.com/mssql/server
     environment:
       - MSSQL_SA_PASSWORD=A!b2c3€4

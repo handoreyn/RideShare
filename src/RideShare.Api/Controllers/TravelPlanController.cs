@@ -23,7 +23,7 @@ public class TravelPlanController : ControllerBase
     public async Task<IActionResult> AddTravelPlan(CreateTravelPlanCommand command, CancellationToken cancellationToken = default)
     {
         var result = await _sender.Send(command, cancellationToken);
-        var resourceUrl = Url.ActionLink("GetById", "TravelPlanController", new { id = result });
+        var resourceUrl = Url.ActionLink("GetById", "TravelPlan", new { id = result });
         return Created(resourceUrl, null);
     }
 
@@ -48,15 +48,15 @@ public class TravelPlanController : ControllerBase
     public async Task<IActionResult> Join(int id, CancellationToken cancellationToken)
     {
         var command = new JoinTravelPlanCommand(id);
-        await _sender.Send(command);
+        await _sender.Send(command, cancellationToken);
         return NoContent();
     }
 
     [HttpPut("{id}/change/{status}")]
-    public async Task<IActionResult> ChangeStatus(int id, bool status)
+    public async Task<IActionResult> ChangeStatus(int id, bool status, CancellationToken cancellationToken)
     {
         var command = new UpdateTravelPlanStatusCommand(id, status);
-        await _sender.Send(command);
+        await _sender.Send(command, cancellationToken);
         return NoContent();
     }
 }
