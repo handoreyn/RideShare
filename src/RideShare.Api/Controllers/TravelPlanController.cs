@@ -3,6 +3,7 @@ using Microsoft.AspNetCore.Mvc;
 using RideShare.Application.Features.TravelPlans.Commands.CreateTravelPlan;
 using RideShare.Application.Features.TravelPlans.Commands.JoinTravelPlan;
 using RideShare.Application.Features.TravelPlans.Commands.UpdateTravelPlanStatus;
+using RideShare.Application.Features.TravelPlans.Queries.FindTravelPlanById;
 using RideShare.Application.Features.TravelPlans.Queries.SearchTravelPlan;
 
 namespace RideShare.Api.Controllers;
@@ -29,9 +30,11 @@ public class TravelPlanController : ControllerBase
 
     [HttpGet("{id:int}", Name = "GetById")]
     [ProducesResponseType(StatusCodes.Status200OK)]
-    public Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
+    public async Task<IActionResult> GetById(int id, CancellationToken cancellationToken)
     {
-        throw new ArgumentNullException();
+        var query = new FindTravelPlanByIdQuery(id);
+        var result = await _sender.Send(query, cancellationToken);
+        return Ok(result);
     }
 
     [HttpGet("search/departure/{departureCity}/destionation/{destinationCity}")]
