@@ -2,6 +2,9 @@ using RideShare.Domain.Common;
 
 namespace RideShare.Domain.Entities;
 
+/// <summary>
+/// Defines <c>TravelPlan</c> entity.
+/// </summary>
 public sealed class TravelPlan : EntityBase
 {
     public string Username { get; set; }
