@@ -13,7 +13,7 @@ services:
     networks:
       - rideshare
     environment:
-      - ConnectionStrings__RideShareConnectionString=Server=ridesharesql; Database=RideShare; User=sa Password=A!b2c3€4; Trust Server Certificate=true;
+      - ConnectionStrings__RideShareConnectionString=Server=ridesharesql; Database=RideShare; User=sa; Password=A!b2c3€4; Trust Server Certificate=true;
 
   ridesharesql:
     image: mcr.microsoft.com/azure-sql-edge
