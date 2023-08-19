@@ -14,5 +14,4 @@ public sealed class TravelPlan : EntityBase
     public string Description { get; set; }
     public bool IsActive { get; set; }
     public DateTime TravelDateTime { get; set; }
-
 }

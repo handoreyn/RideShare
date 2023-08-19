@@ -1,5 +1,4 @@
 using MediatR;
-using RideShare.Domain.Entities;
 
 namespace RideShare.Application.Abstractions.Messaging;
 
