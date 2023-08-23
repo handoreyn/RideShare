@@ -28,4 +28,5 @@ To run project you need docker desktop. If you've follow the directions below:
 - CQRS
 - Fluent Validation
 - Mapper
-- Clean Architectur
+- Clean Architecture
+- DDD
