@@ -6,7 +6,7 @@ namespace RideShare.Domain.Abstractions.Repositories;
 /// <summary>
 /// Defines <c>IRepository<T></c> to implement generic repository
 /// </summary>
-public interface IRepository<T> where T : EntityBase
+public interface IRepository<T> where T : class, IAggregateRoot
 {
     public Task<T> FindById(int id, CancellationToken cancellationToken);
     public Task<T> Find(Expression<Func<T, bool>> predicate, CancellationToken cancellationToken);
