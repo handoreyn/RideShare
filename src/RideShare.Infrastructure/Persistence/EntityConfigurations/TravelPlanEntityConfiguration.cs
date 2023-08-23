@@ -15,11 +15,15 @@ public sealed class TravelPlanEntityConfiguration : IEntityTypeConfiguration<Tra
         builder.Property(p => p.CreatedAt)
             .HasDefaultValue(DateTime.Now);
 
-        builder.Property(p => p.DepartureCity).IsRequired();
-        builder.Property(p => p.DestinationCity).IsRequired();
         builder.Property(p => p.IsActive).IsRequired();
         builder.Property(p => p.SeatCount).IsRequired();
+        builder.OwnsOne(p => p.TravelPlanRoute, p =>
+        {
+            p.Property(pp => pp.DestinationCity)
+                .HasColumnName("TravelPlanRoute_DestinationCity");
+            p.Property(pp => pp.DepartureCity)
+                .HasColumnName("TravelRoute_DepartureCity");
+        });
 
-        builder.HasIndex(p => new { p.DepartureCity, p.DestinationCity }, "IX_TravelPlan_DepartureCity_DestinationCity");
     }
 }

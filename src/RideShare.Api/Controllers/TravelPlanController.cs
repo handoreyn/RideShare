@@ -37,7 +37,7 @@ public class TravelPlanController : ControllerBase
         return Ok(result);
     }
 
-    [HttpGet("search/departure/{departureCity}/destionation/{destinationCity}")]
+    [HttpGet("search/departure/{departureCity}/destination/{destinationCity}")]
     [ProducesResponseType(typeof(List<SearchTravelPlanDto>), StatusCodes.Status200OK)]
     public async Task<IActionResult> Search(string departureCity, string destinationCity, CancellationToken cancellationToken)
     {

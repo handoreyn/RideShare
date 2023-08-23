@@ -1,6 +1,8 @@
 using AutoMapper;
 using RideShare.Application.Abstractions.Messaging;
 using RideShare.Domain.Abstractions.Repositories;
+using RideShare.Domain.Exceptions;
+using RideShare.Domain.ValueObjects;
 
 namespace RideShare.Application.Features.TravelPlans.Queries.SearchTravelPlan;
 
@@ -17,9 +19,11 @@ public sealed class SearchTravelPlanQueryHandler : IQueryHandler<SearchTravelPla
 
     public async Task<List<SearchTravelPlanDto>> Handle(SearchTravelPlanQuery request, CancellationToken cancellationToken)
     {
-        var searchPlan = await _repository.FindAll(r => r.DepartureCity.Equals(request.DepartureCity) &&
-            r.DestinationCity.Equals(request.DestinationCity) && r.IsActive && r.TravelDateTime > DateTime.Now, cancellationToken);
+        var searchPlan = await _repository.FindAll(r => r.TravelPlanRoute.DepartureCity.Equals(request.DepartureCity) &&
+            r.TravelPlanRoute.DestinationCity.Equals(request.DestinationCity), cancellationToken);
 
+        if (searchPlan == null || !searchPlan.Any()) throw new EntityDoesNotExistException($"No travel plan exist according to {request.DepartureCity} and {request.DestinationCity}");
+        
         var plansToReturn = _mapper.Map<List<SearchTravelPlanDto>>(searchPlan);
         return plansToReturn;
     }

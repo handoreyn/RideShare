@@ -1,4 +1,5 @@
 using RideShare.Domain.Common;
+using RideShare.Domain.ValueObjects;
 
 namespace RideShare.Domain.Entities;
 
@@ -7,11 +8,10 @@ namespace RideShare.Domain.Entities;
 /// </summary>
 public sealed class TravelPlan : EntityBase
 {
-    public string Username { get; set; }
     public int SeatCount { get; set; }
-    public string DepartureCity { get; set; }
-    public string DestinationCity { get; set; }
-    public string Description { get; set; }
     public bool IsActive { get; set; }
-    public DateTime TravelDateTime { get; set; }
+    public string Username { get; set; }
+    public string Description { get; set; }
+    public DateTime DepartureDateTime { get; set; }
+    public TravelPlanRoute TravelPlanRoute { get; set; }
 }
