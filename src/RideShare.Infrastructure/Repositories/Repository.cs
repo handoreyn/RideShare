@@ -1,12 +1,13 @@
 using System.Linq.Expressions;
 using Microsoft.EntityFrameworkCore;
+using RideShare.Domain.Abstractions;
 using RideShare.Domain.Abstractions.Repositories;
 using RideShare.Domain.Common;
 using RideShare.Infrastructure.Persistence;
 
 namespace RideShare.Infrastructure.Repositories;
 
-public abstract class Repository<T> : IRepository<T> where T : EntityBase
+public abstract class Repository<T> : IRepository<T> where T :class, IAggregateRoot
 {
     private readonly DatabaseContext _dbContext;
     protected Repository(DatabaseContext dbContext)
